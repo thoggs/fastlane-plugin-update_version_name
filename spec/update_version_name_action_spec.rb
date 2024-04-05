@@ -37,6 +37,5 @@ describe Fastlane::Actions::UpdateVersionNameAction do
     rescue StandardError => e
       puts("An error occurred when trying to delete the file: #{e.message}")
     end
-
   end
 end
