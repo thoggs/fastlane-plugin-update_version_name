@@ -1,9 +1,11 @@
 describe Fastlane::Actions::UpdateVersionNameAction do
   describe '#run' do
-    it 'updates the versionName in build.gradle file' do
-      gradle_file_path = 'spec/fixtures/build.gradle'
+    before(:each) do
+      @gradle_file_path = 'spec/fixtures/build.gradle'
 
-      gradle_file_content = <<-GRADLE
+      FileUtils.mkdir_p(File.dirname(@gradle_file_path))
+
+      @gradle_file_content = <<-GRADLE
         apply plugin: 'com.android.application'
 
         android {
@@ -18,32 +20,22 @@ describe Fastlane::Actions::UpdateVersionNameAction do
       }
       GRADLE
 
-      File.write(gradle_file_path, gradle_file_content)
+      File.write(@gradle_file_path, @gradle_file_content)
+    end
 
-      fake_params = { gradle_file_path: gradle_file_path, version_name: '2.0.0' }
-
+    it 'updates the versionName in build.gradle file' do
+      fake_params = { gradle_file_path: @gradle_file_path, version_name: '2.0.0' }
       Fastlane::Actions::UpdateVersionNameAction.run(fake_params)
-
-      updated_gradle_file_content = File.read(gradle_file_path)
-
+      updated_gradle_file_content = File.read(@gradle_file_path)
       expect(updated_gradle_file_content).to include('versionName "2.0.0"')
+    end
 
-      begin
-        File.delete(gradle_file_path)
-      rescue Errno::ENOENT => e
-        puts("The file was not found: #{e}")
-      rescue StandardError => e
-        puts("An error occurred when trying to delete the file: #{e}")
-      end
-
-      begin
-        num_deleted = File.delete(gradle_file_path)
-        puts("#{num_deleted} files were deleted.")
-      rescue Errno::ENOENT => e
-        puts("One of the files was not found: #{e}")
-      rescue StandardError => e
-        puts("An error occurred when trying to delete the files: #{e}")
-      end
+    begin
+      File.delete(@gradle_file_path)
+    rescue Errno::ENOENT => e
+      puts("The file was not found: #{e}")
+    rescue StandardError => e
+      puts("An error occurred when trying to delete the file: #{e}")
     end
   end
 end
