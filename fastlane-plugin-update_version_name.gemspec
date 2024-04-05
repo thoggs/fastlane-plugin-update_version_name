@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'thiago@uliving.com.br'
 
   spec.summary       = 'Updates the versionName in the build.gradle file of an Android project'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-update_version_name"
+  spec.homepage      = 'https://github.com/thoggs/fastlane-plugin-update_version_name'
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
