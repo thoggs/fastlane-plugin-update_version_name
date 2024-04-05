@@ -33,9 +33,10 @@ describe Fastlane::Actions::UpdateVersionNameAction do
     begin
       File.delete(@gradle_file_path)
     rescue Errno::ENOENT => e
-      puts("The file was not found: #{e}")
+      puts("The file was not found: #{e.message}")
     rescue StandardError => e
-      puts("An error occurred when trying to delete the file: #{e}")
+      puts("An error occurred when trying to delete the file: #{e.message}")
     end
+
   end
 end
