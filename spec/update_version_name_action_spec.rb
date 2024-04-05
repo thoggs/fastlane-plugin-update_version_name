@@ -30,12 +30,8 @@ describe Fastlane::Actions::UpdateVersionNameAction do
       expect(updated_gradle_file_content).to include('versionName "2.0.0"')
     end
 
-    begin
-      File.delete(@gradle_file_path)
-    rescue Errno::ENOENT => e
-      puts("The file was not found: #{e.message}")
-    rescue StandardError => e
-      puts("An error occurred when trying to delete the file: #{e.message}")
+    after(:each) do
+      File.delete(@gradle_file_path) if File.exist?(@gradle_file_path)
     end
   end
 end
