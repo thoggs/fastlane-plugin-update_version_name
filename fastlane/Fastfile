@@ -1,0 +1,3 @@
+lane :test do
+  update_version_name
+end
