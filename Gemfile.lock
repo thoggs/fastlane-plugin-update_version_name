@@ -278,7 +278,7 @@ DEPENDENCIES
   rake
   rspec
   rspec_junit_formatter
-  rubocop (= 1.50.2)
+  rubocop
   rubocop-performance
   rubocop-require_tools
   simplecov
