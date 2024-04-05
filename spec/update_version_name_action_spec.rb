@@ -1,3 +1,5 @@
+require 'fastlane_core'
+
 describe Fastlane::Actions::UpdateVersionNameAction do
   describe '#run' do
     before(:each) do
@@ -31,7 +33,7 @@ describe Fastlane::Actions::UpdateVersionNameAction do
     end
 
     after(:each) do
-      File.delete(@gradle_file_path) if File.exist?(@gradle_file_path)
+      FileUtils.rm_f(@gradle_file_path)
     end
   end
 end
