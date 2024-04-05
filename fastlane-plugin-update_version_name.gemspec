@@ -7,18 +7,11 @@ Gem::Specification.new do |spec|
   spec.version       = Fastlane::UpdateVersionName::VERSION
   spec.author        = 'Thiago Rodrigues'
   spec.email         = 'thiago@uliving.com.br'
-
   spec.summary       = 'Updates the versionName in the build.gradle file of an Android project'
   spec.homepage      = 'https://github.com/thoggs/fastlane-plugin-update_version_name'
   spec.license       = "MIT"
-
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
   spec.require_paths = ['lib']
   spec.metadata['rubygems_mfa_required'] = 'true'
   spec.required_ruby_version = '>= 2.6'
-
-  # Don't add a dependency to fastlane or fastlane_re
-  # since this would cause a circular dependency
-
-  # spec.add_dependency 'your-dependency', '~> 1.0.0'
 end
